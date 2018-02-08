@@ -17,7 +17,7 @@ INNER JOIN users ON users.id = pledges.user_id GROUP BY users.name ORDER BY user
 end
 
 def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_funding_goal
-"SELECT title, SUM(pledges.amount) = funding_goal FROM projects
+"SELECT title, SUM(pledges.amount) >= funding_goal FROM projects
  JOIN pledges ON pledges.project_id = projects.id
  GROUP BY project_id
  HAVING SUM(pledges.amount) >= projects.funding_goal;"
@@ -27,7 +27,7 @@ def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_th
 "SELECT name, SUM(pledges.amount) FROM users
 JOIN users ON users.id = pledges.user_id
 GROUP BY user_id
-ORDER BY SUM(pledges.amount),name;"
+ORDER BY SUM(pledges.amount),users.name;"
 end
 
 def selects_the_category_names_and_pledge_amounts_of_all_pledges_in_the_music_category
