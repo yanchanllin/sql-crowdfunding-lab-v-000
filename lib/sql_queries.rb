@@ -30,10 +30,9 @@ end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_amount_and_users_name
 "SELECT users.name, SUM(pledges.amount) FROM users
-JOIN pledges ON projects.id = pledges.project_id
-INNER JOIN users ON users.id = pledges.user_id
+JOIN users ON users.id = pledges.user_id
 GROUP BY users.name
-ORDER BY SUM(pledges.amount), name;"
+ORDER BY SUM(pledges.amount), users.name;"
 end
 
 def selects_the_category_names_and_pledge_amounts_of_all_pledges_in_the_music_category
